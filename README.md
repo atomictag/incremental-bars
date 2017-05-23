@@ -122,13 +122,13 @@ File an [issue](https://github.com/atomictag/incremental-bars/issues) and I'll h
 
 ### Extensions and future work
 
-The version of this library that [we](http://oneoverzero.net) use in production supports a number of additional functionality that are a bit hard to explain and even harder to publish in open source without investing time that we don't really have. nevertheless if there's enough interest in thi library we can see what to do :). In random order:
+The version of this library that [we](http://oneoverzero.net) use in production supports a number of additional functionality that are a bit hard to explain and even harder to publish in open source without investing time that we don't really have. In random order:
 
 - Extension of the incremental-dom API to get a handle of the 'current' element from within a helper (which is not so easy to get hold of from a template). Useful for a huge number of things.
 
 - Based on the above instrumentation, various helpers to animate elements, especially a really cool helper to recycle and re-order the elements of lists where the items change position
 
-- Atomic changes. Say you have a huge template and a button the state of which can change from enabled/disabled depending on some value that can change depending on external factors. Of course the whole template can be re-rendered and, by design, incremental-dom only apply changes to the parts of the DOM that need to change. Still it's a waste to execute the whole list of instructions just to add/remove an attribute in a very specific place. To address this we have introduced state-awareness in the templates so that something like the following:
+- Atomic changes. Say you have a huge template and a button the state of which can change from enabled/disabled depending on some value that can change. Of course the whole template can be re-rendered and, by design, incremental-dom only apply changes to the parts of the DOM that need to change. Still it's a waste to execute the whole list of instructions and helpers just to add/remove an attribute in a very specific place. To address this we have introduced state-awareness in the templates so that something like the following:
 
       /* ... huge html here ... */
       
@@ -140,7 +140,7 @@ The version of this library that [we](http://oneoverzero.net) use in production 
 
       /* ... more html here ... */
       
- Now, when the "state" of the view hosting the template changes and "canSubmit" becomes true, ONLY the instructions that are needed to re-render the button and the footer are executed and the corresponsing elements updated. All automatic, nothing to worry or care about. Support for this is already built-in in this library, but the runtime part has not been published.
+ Now, when the "state" of the view hosting the template changes and "canSubmit" becomes true, ONLY the instructions that are needed to re-render the button and the footer are executed and the corresponding elements updated. All automatic, nothing to worry or care about. Support for this is already built-in in this library, but the runtime part has not been published and it would be fairly complicated to. Just be aware this is something that can be done in a smart way supporting nested properties, multiple concurrent state changes etc. - always minimizing the number of "blocks" that need to be re-patched. Pretty cool when you see it in action.
 
 ### License
 
