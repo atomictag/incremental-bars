@@ -73,15 +73,15 @@ correctly generates:
     <div key="3">4</div>
     <div key="4">5</div>
 
-One cool feature about this library, and one that comes literally for free thanks to incremental-dom, is the ability to use JQuery & co. in conjunction with the DOM patching, something that is a big no-no for other virtual-dom implementations. Just be aware that DOM manipulations done by JQuery are not necessarily reset after the template is re-rendered because the elments are not thrashed until really needed (unlike traditional Handlebars which thrashes the current DOM sub-tree and builds a new one from scratch upon each render).
+One cool feature about this library, and one that comes literally for free thanks to incremental-dom, is the ability to use JQuery & co. in conjunction with the DOM patching, something that is a big no-no for other virtual-dom implementations. Just be aware that DOM manipulations done by JQuery are not necessarily reset after the template is re-rendered because the elements are not thrashed until really needed (unlike traditional Handlebars which destroys the current DOM sub-tree and builds a new one from scratch upon each render).
 
-Speaking of JQuery and, in general, frameworks that allow nesting of dynamic elements or "views" managed independently and each one with its own template (a typical case for example with $el.append(...) and Backbone extensions like [Backbone.Layout](https://github.com/tbranyen/backbone.layoutmanager)), the typical requirement is to keep "alien" DOM elements within a generated subtree when it is re-rendered. However, the default behaviour of incremental-dom would be to get rid of each foreign subtree when a node is patched. This library provides a convention to inform the code generator that a subtree should be left where it is and skipped. The way to do that is with the (configurable) attribute `data-partial-id`, e.g.
+Speaking of JQuery and, in general, frameworks that allow nesting of dynamic elements or independent "views" with their own template / rendering routine (a typical case for example with $el.append(...) or Backbone extensions like [Backbone.Layout](https://github.com/tbranyen/backbone.layoutmanager)), the typical requirement is to keep "alien" DOM elements within a generated subtree when it is re-rendered. However, the default behaviour of incremental-dom would be to get rid of each foreign subtree when a node is patched. This library provides a convention to inform the code generator that a subtree should be left where it is and skipped. The way to do that is with the (configurable) attribute `data-partial-id`, e.g.
     
     <!-- template "parent" -->
     <div data-partial-id="child"></div>
     ...
     
-Any elements that are appended within `child` are preserved when `parent`is re-rendered, which is a very handy way to nest things together in a sort of "component" fashion.
+Any elements that are appended within `child` are preserved when `parent`is re-rendered, which is a very handy way to nest things together in a sort of "component" fashion. Partials are of course not affected by this as they are natively supported by incremental-bars in the same way they are on standard Handlebars.
 
 ### Known Issues
 
