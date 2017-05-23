@@ -44,6 +44,15 @@ Compatibility
 
 Pretty much everything you can do with Handlebars (as of this time of writing at version 4.0.10) you can do with incremental-bars. This includes partials, default and custom block helpers, decorators etc. The core of this library has been tested in production in various projects - including a full productive mobile banking application - without issues.
 
+Bear in mind that helpers returning html strings will no longer work and might actually cause a runtime error depending on where they are used within the html template. This is not a bug, but rather an expected result of the fact helpers are now executed in between incremental dom instructions. I actually never really use helpers to output HTML (which seems an anti-pattern to me), but in case you do, don't despair. You can write backend-independent helpers by emplyoying the following runtime check:
+    
+    Handlebars.registerHelper('myHelper', function() {
+        var options = arguments[arguments.length - 1];  // Last argument is 'options'
+        var backend = block.data && block.data.backend; // 'backend' is set by the incremental-bars runtime
+        if(backend === 'idom') { /* incremental-dom version ... */ }
+        else { /* default html-string version ... */ }
+    });
+
 ### Known Issues
 
 1. Don't do this ugliness (conditionally open tags not always matched by a closing tag):
@@ -74,9 +83,12 @@ Pretty much everything you can do with Handlebars (as of this time of writing at
 
     will fail because that is not a valid attribute name.
     It is however totally possible to create an ad-hoc 'attribute' helper that does that directly on the DOM element.
+    This is again something I never do as in my opionion returning html artifacts from templates smells of anti-pattern.
 
 
-Found other problems? File an issue and I'll have a look at them. 
+Found other problems? Have a request?
+
+File an [issue](https://github.com/atomictag/incremental-bars/issues) and I'll have a look at it. 
 
 About
 -----
