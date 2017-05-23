@@ -18,21 +18,21 @@ Precompiling Templates
 
 TODO
 
-### Compatibility
+Compatibility
+-------------
 
 TODO
 
-Known Issues
-------------
+### Known Issues
 
 TODO
 
-
-### About
+About
+-----
 
 ![oneoverzero GmbH](http://oneoverzero.net/assets/img/logo.png) 
 
-License
--------
+### License
+
 incremental-bars is released under the MIT license.
 
