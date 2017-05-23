@@ -3,8 +3,6 @@ incremental-bars
 
 incremental-bars provides [incremental-dom](https://github.com/google/incremental-dom) backend backend support to [handlebars](http://www.handlebarsjs.com) templates.
 
-### What for?;
-
 - compile ANY standard Handlebars template to output DOM instead of strings
 - patch only the DOM parts that changed upon each render
 
