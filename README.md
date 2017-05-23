@@ -42,11 +42,41 @@ TODO
 Compatibility
 -------------
 
-TODO
+Pretty much everything you can do with Handlebars (as of this time of writing at version 4.0.10) you can do with incremental-bars. This includes partials, default and custom block helpers, decorators etc. The core of this library has been tested in production in various projects - including a full productive mobile banking application - without issues.
 
 ### Known Issues
 
-TODO
+1. Don't do this ugliness (conditionally open tags not always matched by a closing tag):
+
+       {{#if something}}
+         <div class="something">
+       {{else}}
+         <div class="else"> 
+       {{/if}}
+         BLAH BLAH BLAH
+       </div>
+    
+    but do this (or similar) instead:
+
+        <div class="{{#if something}}something{{else}}else{{/if}}">
+         BLAH BLAH BLAH
+        </div>    
+
+2. Moustached attributes like:
+
+        <div {{ attribute }}>
+          BLAH BLAH BLAH
+        </div>
+    
+    must return an attribute NAME, i.e. any string (or any falsy value), therefore values like:
+
+        attribute = 'class="something" style="width:10px"';
+
+    will fail because that is not a valid attribute name.
+    It is however totally possible to create an ad-hoc 'attribute' helper that does that directly on the DOM element.
+
+
+Found other problems? File an issue and I'll have a look at them. 
 
 About
 -----
