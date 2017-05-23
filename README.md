@@ -30,7 +30,7 @@ TODO
 About
 -----
 
-![oneoverzero GmbH](http://oneoverzero.net/assets/img/logo.png) 
+[![oneoverzero GmbH](http://oneoverzero.net/assets/img/logo.png)](http://oneoverzero.net)
 
 ### License
 
