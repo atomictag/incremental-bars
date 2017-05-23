@@ -9,7 +9,7 @@ incremental-bars provides [incremental-dom](https://github.com/google/incrementa
 Rationale
 ----------
 
-Handlebars templates are awesome and used in countless applications everywhere - but they generate strings, not DOM, and that makes re-rendering fragments fairly expensive and not suitable for in-place DOM patching (like [Virtual Dom](https://github.com/Matt-Esch/virtual-dom), [incremental-dom](https://github.com/google/incremental-dom), React etc.).
+Handlebars templates are awesome and used in countless applications everywhere - but they generate strings, not DOM, and that makes re-rendering fragments fairly expensive and not suitable for in-place DOM patching (popularized by React [Virtual Dom](https://github.com/Matt-Esch/virtual-dom), [incremental-dom](https://github.com/google/incremental-dom), etc.).
 
 There are ways to make Handlebars build DOM rather than strings (e.g. [HtmlBars](https://github.com/tildeio/htmlbars)) but none of the existing approaches seem to be self-contained, backward compatible, fully-featured and simple enough to be easy to integrate with any framework plumbings, while keeping existing templates unchanged. Changing output target appears to be a very complex endevour indeed given the inherent complexity of the Handlebars parser and compiler to support all kind of cool features like helpers, custom block helpers, partials, decorators etc. It turns out it does not have to be all that complex. 
 
