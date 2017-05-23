@@ -11,7 +11,7 @@ Rationale
 
 Handlebars templates are awesome and used in countless applications everywhere - but they generate strings, not DOM, and that makes re-rendering fragments fairly expensive and not suitable for in-place DOM patching (like [Virtual Dom](https://github.com/Matt-Esch/virtual-dom), [incremental-dom](https://github.com/google/incremental-dom), React etc.).
 
-There have been attempts to make HB build DOM rather than strings (e.g. [HtmlBars](https://github.com/tildeio/htmlbars)) but none seem to be off-the-shelf, backward compatible, and simple enough to be usable in real-life. Changing output target appears to be a very complex endevour given the inherent complexity of the Handlebars parser and compiler to support all kind of cool features like helpers, partials. decorators etc. 
+There are ways to make Handlebars build DOM rather than strings (e.g. [HtmlBars](https://github.com/tildeio/htmlbars)) but none seem to be self-contained, backward compatible, fully-featured and simple enough to be usable with any existing template. Changing output target appears to be a very complex endevour given the inherent complexity of the Handlebars parser and compiler to support all kind of cool features like helpers, custom block helpers, partials, decorators etc. 
 
 It turns out it does not have to be all that complex. The fact Handlebars is entirely html-agnostic (it does not make any assumption of how the input looks like so it has not clue about tags, attributes etc.) is indeed an advantage. That is, as long as we provide a built-for-purpose string input to the (pre-)compiler, Handlebars will digest moustaches & co. and produce a "program" that generates a new string when executed - patching the internalized moustaches as it runs.
 
@@ -27,7 +27,7 @@ I chose to use [incremental-dom](https://github.com/google/incremental-dom) beca
 Installing
 ----------
 
-TODO
+    npm install incremental-bars
 
 Usage
 -----
