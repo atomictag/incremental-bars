@@ -22,7 +22,12 @@ This package is essentially composed of 3 main parts:
 - An emitter that understands the intermediate representation and is capable of generating instructions for the target backend (incremental-dom, virtual-dom, etc.) from the input sequence. Currently only incremental-dom is supported.
 - A Handlebars JavascriptCompiler extension that generates a list of functions to execute at runtime instead if a plain string 
 
-I chose to use [incremental-dom](https://github.com/google/incremental-dom) because it's a beautiful, fast and dead-simple library which has already a notion of "sequence of instructions" which map really well with the above approach (to the extent that the "intermediate representation" is just a little bit more than a list of idom-like meta-instructions).
+[incremental-dom](https://github.com/google/incremental-dom) was chosen because it's a beautiful, fast and dead-simple library which has already a notion of "sequence of instructions" which map really well with the above approach (to the extent that the "intermediate representation" is just a little bit more than a list of idom-like meta-instructions).
+
+> The main purpose of this library is to be used as a build-time tool to generate optimized precompiled templates.
+> Although it is perfectly possible to package it to run in a browser, and therefore use it as a runtime compiler, 
+> expect some inevitable size and performance overhead due to the additional internalization steps required to parse
+> and process the HTML input. 
 
 Installing
 ----------
@@ -122,13 +127,14 @@ File an [issue](https://github.com/atomictag/incremental-bars/issues) and I'll h
 
 ### Extensions and future work
 
-The version of this library that [we](http://oneoverzero.net) use in production supports a number of additional functionality that are a bit hard to explain and even harder to publish in open source without investing time that we don't really have. In random order:
+The version of this library that [we](http://oneoverzero.net) use in production supports some extra additional functionality that is a bit hard to explain and even harder to publish in open source without investing time that we don't really have.
+Perhaps some of this may inspire you to tinker around with it:
 
-- Extension of the incremental-dom API to get a handle of the 'current' element from within a helper (which is not so easy to get hold of from a template). Useful for a huge number of things.
+- Instrumentation of the incremental-dom API to get a handle of the 'current' element from within a helper (which is not so easy to get hold of from a template). Useful for a huge number of things.
 
 - Based on the above instrumentation, various helpers to animate elements, especially a really cool helper to recycle and re-order the elements of lists where the items change position
 
-- Atomic changes. Say you have a huge template and a button the state of which can change from enabled/disabled depending on some value that can change. Of course the whole template can be re-rendered and, by design, incremental-dom only apply changes to the parts of the DOM that need to change. Still it's a waste to execute the whole list of instructions and helpers just to add/remove an attribute in a very specific place. To address this we have introduced state-awareness in the templates so that something like the following:
+- Atomic changes. Say you have a huge template and a `button` the state of which can change from enabled/disabled depending on some value. Of course the whole template can be re-rendered and, by design, incremental-dom only apply changes to the parts of the DOM that need to change. Still it's a waste to execute the whole list of instructions and helpers just to add/remove an attribute in a very specific place. To address this we have introduced state-awareness in the templates so that something like the following:
 
       /* ... huge html here ... */
       
@@ -140,7 +146,7 @@ The version of this library that [we](http://oneoverzero.net) use in production 
 
       /* ... more html here ... */
       
- Now, when the "state" of the view hosting the template changes and "canSubmit" becomes true, ONLY the instructions that are needed to re-render the button and the footer are executed and the corresponding elements updated. All automatic, nothing to worry or care about. Support for this is already built-in in this library, but the runtime part has not been published and it would be fairly complicated to. Just be aware this is something that can be done in a smart way supporting nested properties, multiple concurrent state changes etc. - always minimizing the number of "blocks" that need to be re-patched. Pretty cool when you see it in action.
+ Now, when the "state" of the view hosting the template changes and `canSubmit` becomes true, ONLY the instructions that are needed to re-render the button and the footer are executed and the corresponding elements updated. All automatic, nothing to worry or care about. Code-generation support for this is already built-in in this library, but the runtime part has not been published and it would be fairly complicated to do so anyway. Just be aware this is something that can be done - and support nested property changes, intelligently merge multiple concurrent state changes etc. - always minimizing the number of "blocks" that need to be re-patched. All of this because of the interesting side-effect of Handlebars generating independent function  blocks for each block helper.
 
 ### License
 
@@ -149,7 +155,7 @@ incremental-bars is released under the MIT license.
 About
 -----
 
-incremental-dom is developed by oneoverzero GmbH (OOZ)
+made by oneoverzero GmbH (OOZ) 
 
 [![oneoverzero GmbH](http://oneoverzero.net/assets/img/logo.png)](http://oneoverzero.net)
 
