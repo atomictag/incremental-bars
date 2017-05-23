@@ -53,6 +53,36 @@ Bear in mind that helpers returning html strings will no longer work and might a
         else { /* default html-string version ... */ }
     });
 
+Also, [conditional rendering and iterations](http://google.github.io/incremental-dom/#conditional-rendering/array-of-items) pose a challenge to DOM patchers as it is necessary to instruct them on what elements can be recycled and which need to be created from scratch. For example, a simple list like `{ items : [1, 2, 3, 4, 5] }` and the following template:
+
+    {{#each items}}
+        <div>{{ this }}</div>
+    {{/each}}
+    
+will only output `<div>5</div>` as elements are recycled on every cycle. To generate one  `div` per item it is necessary to instruct incremental-dom that each item needs a different element, which requires a unique `key` to be set upon each iteration. This library makes this simple via the `key` attribute, i.e.: 
+
+    {{#each items}}
+        <div key="{{ @index }}">{{ this }}</div> <!-- note the 'key' attribute! -->
+    {{/each}}
+    
+correctly generates:
+
+    <div key="0">1</div>
+    <div key="1">2</div>
+    <div key="2">3</div>
+    <div key="3">4</div>
+    <div key="4">5</div>
+
+One cool feature about this library, and one that comes literally for free thanks to incremental-dom, is the ability to use JQuery & co. in conjunction with the DOM patching, something that is a big no-no for other virtual-dom implementations. Just be aware that DOM manipulations done by JQuery are not necessarily reset after the template is re-rendered because the elments are not thrashed until really needed (unlike traditional Handlebars which thrashes the current DOM sub-tree and builds a new one from scratch upon each render).
+
+Speaking of JQuery and, in general, frameworks that allow nesting of dynamic elements or "views" managed independently and each one with its own template (a typical case for example with $el.append(...) and Backbone extensions like [Backbone.Layout](https://github.com/tbranyen/backbone.layoutmanager)), the typical requirement is to keep "alien" DOM elements within a generated subtree when it is re-rendered. However, the default behaviour of incremental-dom would be to get rid of each foreign subtree when a node is patched. This library provides a convention to inform the code generator that a subtree should be left where it is and skipped. The way to do that is with the (configurable) attribute `data-partial-id`, e.g.
+    
+    <!-- template "parent" -->
+    <div data-partial-id="child"></div>
+    ...
+    
+Any elements that are appended within `child` are preserved when `parent`is re-rendered, which is a very handy way to nest things together in a sort of "component" fashion.
+
 ### Known Issues
 
 1. Don't do this ugliness (conditionally open tags not always matched by a closing tag):
@@ -90,12 +120,37 @@ Found other problems? Have a request?
 
 File an [issue](https://github.com/atomictag/incremental-bars/issues) and I'll have a look at it. 
 
-About
------
+### Extensions and future work
 
-[![oneoverzero GmbH](http://oneoverzero.net/assets/img/logo.png)](http://oneoverzero.net)
+The version of this library that [we](http://oneoverzero.net) use in production supports a number of additional functionality that are a bit hard to explain and even harder to publish in open source without investing time that we don't really have. nevertheless if there's enough interest in thi library we can see what to do :). In random order:
+
+- Extension of the incremental-dom API to get a handle of the 'current' element from within a helper (which is not so easy to get hold of from a template). Useful for a huge number of things.
+
+- Based on the above instrumentation, various helpers to animate elements, especially a really cool helper to recycle and re-order the elements of lists where the items change position
+
+- Atomic changes. Say you have a huge template and a button the state of which can change from enabled/disabled depending on some value that can change depending on external factors. Of course the whole template can be re-rendered and, by design, incremental-dom only apply changes to the parts of the DOM that need to change. Still it's a waste to execute the whole list of instructions just to add/remove an attribute in a very specific place. To address this we have introduced state-awareness in the templates so that something like the following:
+
+      /* ... huge html here ... */
+      
+      <button {{#unless @state.canSubmit}}disabled{{/unless}}>...</button>
+      
+      /* ... more html here ... */
+      
+      <footer class="{{#if @state.canSubmit}}hide{{/if}}>...</footer>
+
+      /* ... more html here ... */
+      
+ Now, when the "state" of the view hosting the template changes and "canSubmit" becomes true, ONLY the instructions that are needed to re-render the button and the footer are executed and the corresponsing elements updated. All automatic, nothing to worry or care about. Support for this is already built-in in this library, but the runtime part has not been published.
 
 ### License
 
 incremental-bars is released under the MIT license.
+
+About
+-----
+
+incremental-dom is developed by oneoverzero GmbH (OOZ)
+
+[![oneoverzero GmbH](http://oneoverzero.net/assets/img/logo.png)](http://oneoverzero.net)
+
 
