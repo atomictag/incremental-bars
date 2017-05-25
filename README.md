@@ -155,7 +155,7 @@ incremental-bars is released under the MIT license.
 About
 -----
 
-made by oneoverzero GmbH (OOZ) 
+made with :smiling_imp: by oneoverzero GmbH (OOZ)
 
 [![oneoverzero GmbH](http://oneoverzero.net/assets/img/logo.png)](http://oneoverzero.net)
 
