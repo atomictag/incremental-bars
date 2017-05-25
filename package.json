@@ -1,0 +1,36 @@
+{
+  "name": "incremental-bars",
+  "description": "incremental-dom backend support for handlebars templates",
+  "version": "1.0.0",
+  "keywords": [
+    "handlebars",
+    "mustache",
+    "template",
+    "html",
+    "incremental-dom"
+  ],
+  "maintainers": [
+    {
+      "name": "Davide Mancuso",
+      "email": "dm@ooz.ch",
+      "web": "http://ooz.ch"
+    }
+  ],
+  "dependencies": {
+    "handlebars": "~4.0.10",
+    "htmlclean": "~3.0.2",
+    "htmlparser2" : "3.9.2",
+    "underscore": "^1.8.3"
+  },
+  "bugs": {
+    "web": "https://github.com/atomictag/incremental-bars/issues"
+  },
+  "repository": [
+    {
+      "type": "git",
+      "url": "https://github.com/atomictag/incremental-bars.git"
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/atomictag/incremental-bars"
+}
