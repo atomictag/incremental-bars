@@ -49,15 +49,12 @@ Only 2 things are necessary:
 1. you must `require('incremental-bars')` instead of `require('handlebars')`
 2. you must add a `transpilerOptions` hash (described below) to the options passed to `Handlebars.compile` and `Handlebars.precompile`
 
+This is an example snippet
+
     var Handlebars = require('incremental-bars');
     var html = '<div>hello: {{ world}} [{{ @backend }}] {{ type }}</world>';
     var templateFn = Handlebars.compile(html, { transpilerOptions : { backend : 'idom' }});
     ...
-
-    // ... if precompiled...
-    var templateData = Handlebars.precompile(html, { transpilerOptions : { backend : 'idom' }});
-
-    // NOTE: if no transpilerOptions are passed to compile / precompile, Handlebars behaves as normal (HTML strings are produced):
 
 #### transpilerOptions
 
@@ -67,6 +64,8 @@ Only 2 things are necessary:
     hoistedStatics           : object (default undefined) : an object that hoists the statics used in the template. Useful for precompiled templates (see "Precompiling templates")
     generateKeysForStaticEl  : boolean (default false) : Whether keys should be auto-generated for elements with only static properties
     generateKeysForAllEl     : boolean (default true) : Whether keys should be auto-generated for ALL elements. Takes precedence over generateKeysForStaticEl
+
+NOTE: if no transpilerOptions (or no supported 'backend' identifier) are passed to compile / precompile, Handlebars behaves as normal (HTML strings are produced):
 
 
 Precompiling Templates
