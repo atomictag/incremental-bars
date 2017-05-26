@@ -61,9 +61,14 @@ Only 2 things are necessary:
 
 #### transpilerOptions
 
+Global options, common to all backends:
+
     backend : [ 'idom' ] (default: undefined) : The transpilation target. Currently only incremental-dom (idom)
     debug   : boolean (default: false) : Enable some extra logging
     skipBlockAttributeMarker : string (default: 'data-partial-id') : name of the attribute that marks an element as parent of a `skip` subtree
+
+incremental-dom backend options:
+
     hoistedStatics           : object (default undefined) : an object that hoists the statics used in the template. Useful for precompiled templates (see "Precompiling templates")
     generateKeysForStaticEl  : boolean (default false) : Whether keys should be auto-generated for elements with only static properties
     generateKeysForAllEl     : boolean (default true) : Whether keys should be auto-generated for ALL elements. Takes precedence over generateKeysForStaticEl
