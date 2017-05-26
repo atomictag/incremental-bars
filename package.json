@@ -1,7 +1,7 @@
 {
   "name": "incremental-bars",
   "description": "incremental-dom backend support for handlebars templates",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "keywords": [
     "handlebars",
     "mustache",
@@ -18,8 +18,7 @@
   ],
   "dependencies": {
     "handlebars": "~4.0.10",
-    "htmlclean": "~3.0.2",
-    "htmlparser2" : "3.9.2",
+    "htmlparser2": "3.9.2",
     "underscore": "^1.8.3"
   },
   "bugs": {
