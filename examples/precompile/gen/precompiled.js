@@ -63,31 +63,31 @@
 
   return (_o("div", "idom-6", __$._1614377996) , _t("\n") , _o("div", "idom-7", __$._2650412886) , _t("\n") , _o("h3", "idom-8", null) , _t("template-1 (context)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-9", __$._3222510870) , _t("\n") , _o("div", "idom-10", null) , _t("hello: "
     + container.escapeExpression(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"world","hash":{},"data":data}) : helper)))
-    + "") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-11", null));
+    + "") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-11", null) , _o("span", "idom-12", null) , _t("[17] have spaces") , _c("span") , _t(__$._S) , _o("span", "idom-13", null) , _t("between") , _c("span") , _t(__$._S) , _o("span", "idom-14", null) , _t("tags") , _c("span") , _c("div") , _t("\n") , _v("hr", "idom-15", null));
 },"useData":true});
 
     /* ------------------ template [ template-2 ] ------------------ */
     Hbs.templates["template-2"] = Hbs.template({"compiler":[7,">= 4.0.0","idom"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return (_o("div", "idom-14", __$._1614377996) , _t("\n") , _o("div", "idom-15", __$._2650412886) , _t("\n") , _o("h3", "idom-16", null) , _t("template-2 (context + data)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-17", __$._3222510870) , _t("\n") , _o("div", "idom-18", null) , _t("hello: "
+  return (_o("div", "idom-18", __$._1614377996) , _t("\n") , _o("div", "idom-19", __$._2650412886) , _t("\n") , _o("h3", "idom-20", null) , _t("template-2 (context + data)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-21", __$._3222510870) , _t("\n") , _o("div", "idom-22", null) , _t("hello: "
     + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
     + ". My backend is "
     + alias4(((helper = (helper = helpers.backend || (data && data.backend)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"backend","hash":{},"data":data}) : helper)))
-    + "") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-19", null));
+    + "") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-23", null));
 },"useData":true});
 
     /* ------------------ template [ template-3 ] ------------------ */
     Hbs.templates["template-3"] = Hbs.template({"compiler":[7,">= 4.0.0","idom"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return (_o("div", "idom-23", __$._1614377996) , _t("\n") , _o("div", "idom-24", __$._2650412886) , _t("\n") , _o("h3", "idom-25", null) , _t("template-3 (context + data + partial)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-26", __$._3222510870) , _t("\n") , _o("div", "idom-27", null) , _t("hello: "
+  return (_o("div", "idom-27", __$._1614377996) , _t("\n") , _o("div", "idom-28", __$._2650412886) , _t("\n") , _o("h3", "idom-29", null) , _t("template-3 (context + data + partial)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-30", __$._3222510870) , _t("\n") , _o("div", "idom-31", null) , _t("hello: "
     + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
     + ". My backend is "
     + alias4(((helper = (helper = helpers.backend || (data && data.backend)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"backend","hash":{},"data":data}) : helper)))
     + "") , _c("div"))
     + ((stack1 = container.invokePartial(partials["_template-partial"],depth0,{"name":"_template-partial","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + (_t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-28", null));
+    + (_t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-32", null));
 },"usePartial":true,"useData":true});
 
     /* ------------------ template [ template-4 ] ------------------ */
@@ -126,15 +126,15 @@
 },"compiler":[7,">= 4.0.0","idom"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return (_o("div", "idom-44", __$._1614377996) , _t("\n") , _o("div", "idom-45", __$._2650412886) , _t("\n") , _o("h3", "idom-46", null) , _t("template-4 (context + data + partial + #each + #if)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-47", __$._3222510870) , _t("\n") , _o("div", "idom-48", null) , _t("hello: "
+  return (_o("div", "idom-48", __$._1614377996) , _t("\n") , _o("div", "idom-49", __$._2650412886) , _t("\n") , _o("h3", "idom-50", null) , _t("template-4 (context + data + partial + #each + #if)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-51", __$._3222510870) , _t("\n") , _o("div", "idom-52", null) , _t("hello: "
     + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
     + ". My backend is "
     + alias4(((helper = (helper = helpers.backend || (data && data.backend)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"backend","hash":{},"data":data}) : helper)))
     + "") , _c("div"))
     + ((stack1 = container.invokePartial(partials["_template-partial"],depth0,{"name":"_template-partial","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + (_t("\n") , _o("div", "idom-49", null) , _t("\n") , _o("ul", "idom-50", null) , _t("\n                "))
+    + (_t("\n") , _o("div", "idom-53", null) , _t("\n") , _o("ul", "idom-54", null) , _t("\n                "))
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + (_t("\n") , _c("ul") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-51", null));
+    + (_t("\n") , _c("ul") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-55", null));
 },"usePartial":true,"useData":true});
 
     /* ------------------ template [ template-5 ] ------------------ */
@@ -173,15 +173,15 @@
 },"compiler":[7,">= 4.0.0","idom"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return (_o("div", "idom-67", __$._1614377996) , _t("\n") , _o("div", "idom-68", __$._2650412886) , _t("\n") , _o("h3", "idom-69", null) , _t("template-5 (context + data + partial + #each + #if + customHelper)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-70", __$._3222510870) , _t("\n") , _o("div", "idom-71", null) , _t("hello: "
+  return (_o("div", "idom-71", __$._1614377996) , _t("\n") , _o("div", "idom-72", __$._2650412886) , _t("\n") , _o("h3", "idom-73", null) , _t("template-5 (context + data + partial + #each + #if + customHelper)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-74", __$._3222510870) , _t("\n") , _o("div", "idom-75", null) , _t("hello: "
     + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
     + ". My backend is "
     + alias4(((helper = (helper = helpers.backend || (data && data.backend)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"backend","hash":{},"data":data}) : helper)))
     + "") , _c("div"))
     + ((stack1 = container.invokePartial(partials["_template-partial"],depth0,{"name":"_template-partial","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + (_t("\n") , _o("div", "idom-72", null) , _t("\n") , _o("ul", "idom-73", null) , _t("\n                "))
+    + (_t("\n") , _o("div", "idom-76", null) , _t("\n") , _o("ul", "idom-77", null) , _t("\n                "))
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + (_t("\n") , _c("ul") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-74", null));
+    + (_t("\n") , _c("ul") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-78", null));
 },"usePartial":true,"useData":true});
 
     /* ------------------ template [ template-6 ] ------------------ */
@@ -220,15 +220,25 @@
 },"compiler":[7,">= 4.0.0","idom"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return (_o("div", "idom-90", __$._1614377996) , _t("\n") , _o("div", "idom-91", __$._2650412886) , _t("\n") , _o("h3", "idom-92", null) , _t("template-6 (context + data + partial + #each + #if + customHelper + customBlockHelper)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-93", __$._3222510870) , _t("\n") , _o("div", "idom-94", null) , _t("hello: "
+  return (_o("div", "idom-99", __$._1614377996) , _t("\n") , _o("div", "idom-100", __$._2650412886) , _t("\n") , _o("h3", "idom-101", null) , _t("template-6 (context + data + partial + #each + #if + customHelper + customBlockHelper)") , _c("h3") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-102", __$._3222510870) , _t("\n") , _o("div", "idom-103", null) , _t("hello: "
     + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
     + ". My backend is "
     + alias4(((helper = (helper = helpers.backend || (data && data.backend)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"backend","hash":{},"data":data}) : helper)))
     + "") , _c("div"))
     + ((stack1 = container.invokePartial(partials["_template-partial"],depth0,{"name":"_template-partial","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + (_t("\n") , _o("div", "idom-95", null) , _t("\n") , _o("ul", "idom-96", null) , _t("\n                "))
+    + (_t("\n") , _o("div", "idom-104", null) , _t("\n") , _o("ul", "idom-105", null) , _t("\n                "))
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + (_t("\n") , _c("ul") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-97", null));
+    + (_t("\n") , _c("ul") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-106", null) , _t("\n") , _o("div", "idom-107", null) , _t("spaces (\" \"): [                  ]") , _c("div") , _t("\n") , _o("div", "idom-108", null) , _t("spaces (&nbsp): [                  ]") , _c("div") , _t("\n") , _o("div", "idom-109", null) , _t("\n") , _o("div", "idom-110", null) , _t("SPACE "
+    + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
+    + " IN\n                   "
+    + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
+    + " BETWEEN ") , _c("div") , _t("\n") , _o("div", "idom-111", null) , _t("NO"
+    + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
+    + "SPACE"
+    + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
+    + "IN"
+    + alias4(((helper = (helper = helpers.world || (depth0 != null ? depth0.world : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"world","hash":{},"data":data}) : helper)))
+    + "BETWEEN ") , _c("div") , _t("\n") , _c("div") , _t("\n") , _o("div", "idom-112", null) , _t("comments (brackets must be empty)\n            []\n            []\n            []\n            []\n            []\n            []\n\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _c("div") , _t("\n") , _v("hr", "idom-113", null));
 },"usePartial":true,"useData":true});
 
 
