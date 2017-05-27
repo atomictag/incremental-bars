@@ -1,0 +1,19 @@
+<div class="content">
+    <div class="content__title">
+        <h3>template-6 (context + data + partial + #each + #if + customHelper + customBlockHelper)</h3>
+    </div>
+    <div class="content__body">
+        <div>hello: {{ world}}. My backend is {{ @backend }}</div>
+        {{> _template-partial }}
+        <div>
+            <ul>
+                {{#each items}}
+                    <li key="{{ @index }}" style="color:{{#customBlockHelper @index }}red{{ else }}navy{{/customBlockHelper}};">
+                        {{ customHelper @index }} {{ this }} {{#if @first}}(first){{/if}} {{#if @last}}(last){{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+<hr/>

@@ -1,0 +1,68 @@
+(function(Hbs, Idom) {
+
+    // Precompiled templates are collected in Handlebars.template
+    Hbs.templates = Hbs.templates || {};
+
+    // Handlebars.template override. Required so the backend type becomes
+    // available to templates and helpers as {{ @backend }} and options.data.backend
+
+    var original_template = Hbs.template;
+    Hbs.template = function template_instrumented(spec) {
+        var templateFn     = original_template(spec);
+        if(templateFn) {
+            var fn = templateFn, backend = spec.compiler[2] || "html";
+            templateFn = function(context, options) {
+                options              = options || {};
+                options.data         = options.data || {};
+                options.data.backend = backend;
+                return fn(context, options);
+            };
+            // Backend also available as a property of the template function
+            templateFn.backend = backend;
+        }
+        return templateFn;
+    };
+
+{{#if statics}}
+    // Generated statics block
+
+    var {{ lookup statics "__name"}} = {
+        {{#each statics}}
+           {{ @key }} : {{{stringify this }}},
+        {{/each}}
+    };
+{{/if}}
+
+{{#if functionMap}}
+    // Generated function map
+    {{#each functionMap}}
+    {{#if @first}}var {{^}}    {{/if}}{{ this}} = {{mapOpcode @key ../backend}}{{#if @last}};{{else}}, {{/if}}
+    {{/each}}
+{{/if}}
+
+{{#if templates}}
+
+    // ================== Generated precompiled templates ==================
+
+    {{#each templates}}
+    /* ------------------ template [ {{ @key }} ] ------------------ */
+    Hbs.templates["{{ @key }}"] = Hbs.template({{{ this }}});
+
+    {{/each}}
+
+{{else}}
+    /* ------------------ [ NO TEMPLATES ] ------------------ */
+{{/if}}
+
+{{#if partials.length}}
+
+    // ================== Auto-register partials ==================
+
+    {{#each partials}}
+    /* ------------------ partial [ {{ @key }} ] ------------------ */
+    Hbs.registerPartial("{{ this }}", Hbs.templates["{{ this }}"] );
+
+    {{/each}}
+{{/if}}
+
+})(window.Handlebars, window.IncrementalDOM);

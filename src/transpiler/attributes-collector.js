@@ -1,4 +1,5 @@
 var _ = require('underscore')._;
+var Constants = require('../shared/constants');
 
 var BLOCK_QUALIFIER = 'block';
 var ATTRIBUTE_QUALIFIER = 'attribute';
@@ -13,7 +14,7 @@ var AttributesCollector = function(parseOptions) {
     this.skipBlockAttributeMarker = parseOptions.skipBlockAttributeMarker;
 };
 AttributesCollector.prototype.pushPair  = function(key, value) {
-    var hasMoustache = key.indexOf(moustachePlaceholderPrefix) !== -1 || value.indexOf(moustachePlaceholderPrefix) !== -1;
+    var hasMoustache = key.indexOf(Constants.moustachePlaceholderPrefix) !== -1 || value.indexOf(Constants.moustachePlaceholderPrefix) !== -1;
     var isStatic     = (!hasMoustache && this.bcount === 0);
     var qualifier    = ATTRIBUTE_QUALIFIER;
     // skip block attribute can be static or dynamic
@@ -34,13 +35,13 @@ AttributesCollector.prototype.pushPair  = function(key, value) {
         this.staticAttrs.push(key, value, qualifier, false, this.bcount);
     } else {
         var isBlock = false;
-        if(hasMoustache && key.indexOf(moustachePlaceholderBlockPrefix) !== -1) {
+        if(hasMoustache && key.indexOf(Constants.moustachePlaceholderBlockPrefix) !== -1) {
             isBlock = true;
             this.hasBlocks = true;
             // TODO => sanity check value=""
-            if(key.indexOf(moustachePlaceholderBlockStartPrefix) !== -1) {
+            if(key.indexOf(Constants.moustachePlaceholderBlockStartPrefix) !== -1) {
                 ++this.bcount;
-            } else if(key.indexOf(moustachePlaceholderBlockEndPrefix) !== -1) {
+            } else if(key.indexOf(Constants.moustachePlaceholderBlockEndPrefix) !== -1) {
                 --this.bcount;
             }
         }

@@ -3,32 +3,11 @@ var HtmlParser = require('htmlparser2').Parser;
 
 var Utils = require('../shared/utils');
 var Opcodes = require('../shared/opcodes');
+var Constants = require('../shared/constants');
 var DatasetCollector = require('./dataset-collector');
 var AttributesCollector = require('./attributes-collector');
 
-var
-ANY_MOUSTACHE_RE                  = /\{{2,4}~?(?:\n|\r|.)*?~?\}{2,4}/gmi, // match any moustache
-//
-BLOCK_MOUSTACHE_RE                = /(\{{2,3}~?[\s]*(?:#|\/|>|else|\*|\^)(?:\n|\r|.)*?~?\}{2,3})/gm, // match open-close-else moustache
-BLOCK_MOUSTACHE_START_RE          = /(\{{2,3}~?[\s]*(?:#)(?:\n|\r|.)*?~?\}{2,3})/gm,                 // match open moustache
-BLOCK_MOUSTACHE_ELSE_RE           = /(\{{2,3}~?[\s]*(?:else|\^)(?:\n|\r|.)*?~?\}{2,3})/gm,           // match else moustache
-BLOCK_MOUSTACHE_END_RE            = /(\{{2,3}~?[\s]*(?:\/)(?:\n|\r|.)*?~?\}{2,3})/gm,                // match close moustache
-COMMENT_MOUSTACHE_RE              = /(\{{2}~?!(?:.)*?~?\}{2})/g,                                     // match all comments moustache
-COMMENT_BLOCK_MOUSTACHE_RE        = /(\{{2}~?!(?:--)?(?:\n|\r|.)*?(?:--)~?\}{2})/gm,                 // match all comments moustache
-TRIM_LEFT_RE                      = /\s*(\{{2,3})\s*~/gm,                                            // {{~ and {{{~
-TRIM_RIGHT_RE                     = /~\s*(\}{2,3})\s*/gm,                                            // ~}} and ~}}}
-//
-moustachePlaceholderPrefix           = 'moustache-',
-moustachePlaceholderBlockPrefix      = 'moustache-block-',
-moustachePlaceholderBlockStartPrefix = 'moustache-block-start-',
-moustachePlaceholderBlockElsePrefix  = 'moustache-block-else-',
-moustachePlaceholderBlockEndPrefix   = 'moustache-block-end-',
-moustachePlaceholderSuffix           = '-x',
-//
-ANY_MOUSTACHE_PLACEHOLDER_RE      = /(\s?moustache\-.*?\-x\s?)/gi,
-BLOCK_MOUSTACHE_PLACEHOLDER_RE    = /(\s?moustache\-block.*?-x\s?)/gi,
-//
-DEFAULT_OPTIONS   = {
+var DEFAULT_OPTIONS   = {
     skipBlockAttributeMarker   : 'data-partial-id',     // The attribute marker for elements that need to generate a Opcodes.SKIP instruction
     emptySkipBlocks            : true,                  // Whether instructions within skip blocks should not be generated
     safeMergeSelfClosing       : true,                  // Whether it is safe to merge open / close on ALL tags
@@ -61,19 +40,19 @@ _.extend(TemplateTranspiler.prototype, {
         return HtmlParser;
     },
     makePlaceholder : function(moustache) {
-        var placeholder, mKey = Utils.uniqueId() + moustachePlaceholderSuffix; // Add a termination to prevent moustache-1 from matching moustache-10 etc.
+        var placeholder, mKey = Utils.uniqueId() + Constants.moustachePlaceholderSuffix; // Add a termination to prevent moustache-1 from matching moustache-10 etc.
         if(!!moustache.match(/\{{4}\s*[^\/]/)) {
             throw new Error('Raw helpers are not supported (found: ' + moustache + ' )')
-        } else if(!!moustache.match(BLOCK_MOUSTACHE_START_RE)) {
-            placeholder = moustachePlaceholderBlockStartPrefix;
-        } else if(!!moustache.match(BLOCK_MOUSTACHE_ELSE_RE)) {
-            placeholder = moustachePlaceholderBlockElsePrefix;
-        } else if(!!moustache.match(BLOCK_MOUSTACHE_END_RE)) {
-            placeholder = moustachePlaceholderBlockEndPrefix;
-        } else if(!!moustache.match(BLOCK_MOUSTACHE_RE)) {
-            placeholder = moustachePlaceholderBlockPrefix;
+        } else if(!!moustache.match(Constants.BLOCK_MOUSTACHE_START_RE)) {
+            placeholder = Constants.moustachePlaceholderBlockStartPrefix;
+        } else if(!!moustache.match(Constants.BLOCK_MOUSTACHE_ELSE_RE)) {
+            placeholder = Constants.moustachePlaceholderBlockElsePrefix;
+        } else if(!!moustache.match(Constants.BLOCK_MOUSTACHE_END_RE)) {
+            placeholder = Constants.moustachePlaceholderBlockEndPrefix;
+        } else if(!!moustache.match(Constants.BLOCK_MOUSTACHE_RE)) {
+            placeholder = Constants.moustachePlaceholderBlockPrefix;
         } else {
-            placeholder = moustachePlaceholderPrefix;
+            placeholder = Constants.moustachePlaceholderPrefix;
         }
         // The replace moustache key, taking care of padding either sides otherwise the HTML parser may fail its tokenization
         return ' ' + placeholder + mKey + ' ';
@@ -111,7 +90,7 @@ _.extend(TemplateTranspiler.prototype, {
     },
     patchMoustaches : function(html) {
         var patchedHtml = html;
-        var moustaches = html.match(ANY_MOUSTACHE_RE);
+        var moustaches = html.match(Constants.ANY_MOUSTACHE_RE);
         if(moustaches && moustaches.length) {
             if(this.RECYCLE_MOUSTACHE_PLACEHOLDERS) {
                 console.warn('*** RECYCLE_MOUSTACHE_PLACEHOLDERS is enabled. This may produce wrong dynamic attributes in some cases!')
@@ -126,7 +105,7 @@ _.extend(TemplateTranspiler.prototype, {
                     regexp  : new RegExp('\\s?' + placeholder.trim() + '\\s?', 'gi'),
                     key     : placeholder,
                     value   : normalizedMoustache,
-                    isBlock : (placeholder.indexOf(moustachePlaceholderBlockPrefix) !== -1),
+                    isBlock : (placeholder.indexOf(Constants.moustachePlaceholderBlockPrefix) !== -1),
                     datasets: this.extractDatasets(moustache)
                 };
             }, this);
@@ -135,9 +114,9 @@ _.extend(TemplateTranspiler.prototype, {
     },
     // Tokenize attribute on moustace boundaries. Double quote all non-moustace content
     tokenizeAttribute : function(attr) {
-        var tokens = attr.split(ANY_MOUSTACHE_PLACEHOLDER_RE), buffer = '';
+        var tokens = attr.split(Constants.ANY_MOUSTACHE_PLACEHOLDER_RE), buffer = '';
         _.each(tokens, function(token) {
-            if(token.match(ANY_MOUSTACHE_PLACEHOLDER_RE)) {
+            if(token.match(Constants.ANY_MOUSTACHE_PLACEHOLDER_RE)) {
                 buffer += token;
             } else {
                 buffer += Utils.quotedString(token);
@@ -279,15 +258,15 @@ _.extend(TemplateTranspiler.prototype, {
     prepareHtml : function() {
         if(this.html) {
             // Trim spaces (before comments so they can be used as trimmers :)
-            var html = this.html.replace(TRIM_LEFT_RE, '$1~').replace(TRIM_RIGHT_RE, '~$1');
+            var html = this.html.replace(Constants.TRIM_LEFT_RE, '$1~').replace(Constants.TRIM_RIGHT_RE, '~$1');
             // Remove comments
-            html = html.replace(COMMENT_BLOCK_MOUSTACHE_RE, '').replace(COMMENT_MOUSTACHE_RE, '');
+            html = html.replace(Constants.COMMENT_BLOCK_MOUSTACHE_RE, '').replace(Constants.COMMENT_MOUSTACHE_RE, '');
             // More trimming before and after leading/trailing tags (for noel views)
             html = html.replace(/^\s*</gm,'<').replace(/>\s*$/gm,'>');
             // Patch moustaches. This also normalizes them
             html = this.patchMoustaches(html);
             // Normalize moustaches enclosed used in tags, so they can be used as <{{ tag }}> ... <{{ /tag }}>
-            html = html.replace(new RegExp('(<\\/?)\\s*(' + moustachePlaceholderPrefix + '.*?' + moustachePlaceholderSuffix + ')\\s*(>)', 'gm'), '$1$2$3');
+            html = html.replace(new RegExp('(<\\/?)\\s*(' + Constants.moustachePlaceholderPrefix + '.*?' + Constants.moustachePlaceholderSuffix + ')\\s*(>)', 'gm'), '$1$2$3');
             // Remove double spaces between a block and a mustache _block_   _value_ => _block_ _value_
             // **** this works but it removes spaces too eagerly
             // html = html.replace(/(moustache\-block.*?\-x)\s*(?=moustache\-.*?\-x)/gi, '$1 ');
@@ -416,11 +395,11 @@ _.extend(TemplateTranspiler.prototype, {
 
             },
             ontext: function(text) {
-                var segments = text.split(BLOCK_MOUSTACHE_PLACEHOLDER_RE);
+                var segments = text.split(Constants.BLOCK_MOUSTACHE_PLACEHOLDER_RE);
                 _.each(segments, function(segment) {
                     // Need to allow empty text segments otherwise "<span>A</span> <span>B</span>" becomes "AB"
                     if(segment /* && segment.trim() */) {
-                        var match  = !!segment.match(BLOCK_MOUSTACHE_PLACEHOLDER_RE);
+                        var match  = !!segment.match(Constants.BLOCK_MOUSTACHE_PLACEHOLDER_RE);
                         var opcode = match ? Opcodes.CONTROL : Opcodes.TEXT;
                         pushDescriptor(opcode, [ segment ], { skipLevel : state.skipLevel });
                     }

@@ -30,11 +30,11 @@ var IDomEmitter = module.exports = function(options) {
     this.options = _.defaults(options || {}, {
         hoistedStatics           : false, // An object that will hold hoisted static string references
         generateKeysForStaticEl  : false, // Whether keys should be auto-generated for elements with only static properties
-        generateKeysForAllEl     : true, // Whether keys should be auto-generated for ALL elements
+        generateKeysForAllEl     : true,  // Whether keys should be auto-generated for ALL elements
+        staticsName              : '__$', // Name of the hoistedStatics object variable
     });
 };
 _.extend(IDomEmitter.prototype, {
-    STATICS_NAME : '__$',
     functionMap  : DEFAULT_FUNCTION_MAP,
     formatAttrs  : function(attrs, compact, trim) {
         if(compact) attrs = _.compact(attrs);
@@ -88,7 +88,7 @@ _.extend(IDomEmitter.prototype, {
     hoistStatics : function(descriptors) {
         var statics = this.options.hoistedStatics;;
         if(statics) {
-            var __name = this.STATICS_NAME;
+            var __name = this.options.staticsName;
             var __singleSpaceVar = '_S';
             if(!_.isObject(statics)) {
                 throw new Error('`hoistedStatics` must be an object!');

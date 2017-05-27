@@ -63,37 +63,17 @@ There is currently no CLI but that's easy to add (or you can roll your own).
 
 Check out the /examples folder for some inspiration.
 
-> NOTE: `Handlebars.compile` is not very useful with backends other than the default `html` since executing te template function
+> NOTE: `Handlebars.compile` is not very useful with backends other than the default `html` in a Node.js environment since executing te template function
 > of DOM-patching backends requires, obviously, a DOM environment. For the incremental-dom server-side rendering you can check out [incremental-dom-to-string](https://github.com/paolocaminiti/incremental-dom-to-string)
 
 #### transpilerOptions
 
-Parser options, common to all backends (only `backend` is required, if you want to compile to something other than html strings):
-
-    backend : [ 'idom' ] (default: undefined) : The transpilation target. Currently only incremental-dom (idom)
-    debug   : boolean (default: false) : Enable some extra logging
-    skipBlockAttributeMarker : string (default: 'data-partial-id') : name of the attribute that marks an element as parent of a `skip` subtree
-
-Backend options (all optional:
-
-    hoistedStatics           : object (default undefined) : an object that hoists the statics used in the template. Useful for precompiled templates (see "Precompiling templates")
-    generateKeysForStaticEl  : boolean (default false) : Whether keys should be auto-generated for elements with only static properties
-    generateKeysForAllEl     : boolean (default true) : Whether keys should be auto-generated for ALL elements. Takes precedence over generateKeysForStaticEl
-    functionMap              : object (default undefined) : mapping function between transpiler opcodes and backend instructions. Useful if you want/need to use custom functions instead of the defaults for the chosen backend.
-
-NOTE: if no transpilerOptions (or no supported 'backend' identifier) are passed to compile / precompile, Handlebars behaves as normal (HTML strings are produced):
-
-Full example (this is the default for the ìdom backend):
+Full example with description (this is the default for the ìdom backend):
 
 ```javascript
-Handlebars.compile(html, { transpilerOptions : {
-    backend                  : 'idom',
-    debug                    : false,
-    skipBlockAttributeMarker : 'data-partial-id',
-    generateKeysForStaticEl  : false,
-    generateKeysForAllEl     : true,
-    hoistedStatics           : false,
-    functionMap  : {
+var transpilerOptions   = {
+    backend : 'idom',     // REQUIRED: Suppoorted backends: idom, html (to use default Handlebars)
+    functionMap : {       // OPTIONAL: What function names should be generated for the various opcodes for this backend (see shared/opcodes.js). Defaults:
       'elementOpen'      : 'IncrementalDOM.elementOpen',
       'elementClose'     : 'IncrementalDOM.elementClose',
       'elementVoid'      : 'IncrementalDOM.elementVoid',
@@ -101,11 +81,18 @@ Handlebars.compile(html, { transpilerOptions : {
       'elementOpenStart' : 'IncrementalDOM.elementOpenStart',
       'elementOpenEnd'   : 'IncrementalDOM.elementOpenEnd',
       'attr'             : 'IncrementalDOM.attr',
-      'skip'             : 'IncrementalDOM.skip',
-    }
-  }
-});
+      'skip'             : 'IncrementalDOM.skip'
+    },
+    hoistedStatics           : {},                // OPTIONAL (undefined). An object that will hold hoisted static string references (falsy value to disable)
+    generateKeysForStaticEl  : false,             // OPTIONAL (false). Whether keys should be auto-generated for elements with only static properties (not recommended)
+    generateKeysForAllEl     : true,              // OPTIONAL (true). Whether keys should be auto-generated for ALL elements (recommended, takes precedence over generateKeysForStaticEl)
+    skipBlockAttributeMarker : 'data-partial-id', // OPTIONAL (data-partial-id). The attribute marker for elements that need to generate a 'skip' instruction (falsy to disable)
+    emptySkipBlocks          : true,              // OPTIONAL (true). Whether instructions within skip blocks should be ignored / not be generated
+    safeMergeSelfClosing     : true,              // OPTIONAL (true). Whether it is safe to merge open / close on ALL tags (true because this is safe with idom backends)
+}
 ```
+
+NOTE: if no transpilerOptions (or no supported 'backend' identifier) are passed to compile / precompile, Handlebars behaves as normal (HTML strings are produced):
 
 Precompiling Templates
 ----------------------

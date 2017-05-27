@@ -1,0 +1,19 @@
+<div class="content">
+    <div class="content__title">
+        <h3>template-4 (context + data + partial + #each + #if)</h3>
+    </div>
+    <div class="content__body">
+        <div>hello: {{ world}}. My backend is {{ @backend }}</div>
+        {{> _template-partial }}
+        <div>
+            <ul>
+                {{#each items}}
+                    <li key="{{ @index }}" style="color:{{#if @index }}navy{{^}}red{{/if}}">
+                        {{ @index }} {{ this }} {{#if @first}}(first){{/if}} {{#if @last}}(last){{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+<hr/>

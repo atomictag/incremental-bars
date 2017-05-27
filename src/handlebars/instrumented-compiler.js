@@ -96,7 +96,7 @@ module.exports = function(Handlebars) {
                     console.log('\n ------8<------\n', program.prettyPrint(), '\n ------>8------\n');
                 }
                 options.backend = backend;
-                output = precompile(program.prettyPrint(), options);
+                output = precompile(program.toString(), options);
             });
         } else {
             output = precompile(input, options);
