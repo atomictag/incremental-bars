@@ -43,6 +43,8 @@ Installing
 `require('incremental-bars')` returns a regular Handlebars object that you can use as normal to (pre)compile templates.
 You specify a transpiler mode other than the standard `'html'` by passing a `transpilerOptions` hash to `compile` or `precompile` as described in the next sections.
 
+Head over to the [examples](https://github.com/atomictag/incremental-bars/tree/master/examples) to get an idea of what the library does.
+
 Usage
 -----
 
@@ -59,16 +61,20 @@ var Handlebars = require('incremental-bars');
 var html = '<div>hello: {{ world}} [{{ @backend }}] {{ type }}</world>';
 var templateFn = Handlebars.compile(html, { /* Handlebars options, */ transpilerOptions : { backend : 'idom' }});
 ...
+
+// when you are ready to render:
+IncrementalDOM.patch(someElement, templateFn, someData);
 ```
 
 Of course `Handlebars.precompile` works the same way (more info on that below)
 
-Check out the /examples folder for some inspiration.
+Check out the [examples](https://github.com/atomictag/incremental-bars/tree/master/examples) for some inspiration.
 
 > NOTE: `Handlebars.compile` is not very useful with backends other than the default `html` in a Node.js environment since executing te template function
 > of DOM-patching backends requires, obviously, a DOM environment. For the incremental-dom server-side rendering you can check out [incremental-dom-to-string](https://github.com/paolocaminiti/incremental-dom-to-string)
 
 There is currently no CLI but that's easy to add (or you can roll your own).
+The [precompile script](https://github.com/atomictag/incremental-bars/blob/master/examples/lib/precompile.js) is a good starting point.
 
 #### transpilerOptions
 
@@ -108,6 +114,8 @@ var Handlebars = require('incremental-bars');
 var html = '<div>hello: {{ world}} [{{ @backend }}] {{ type }}</world>';
 var templateData = Handlebars.precompile(html, { /* Handlebars options, */ transpilerOptions : { backend : 'idom' }});
 ...
+// when you are ready to render:
+IncrementalDOM.patch(someElement, templateFn, someData);
 ```
 
 > `hoistedStatics` requires a special note. This is  particularly useful if you precompile a bunch of templates and generate a single file
