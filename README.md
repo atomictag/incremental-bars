@@ -40,6 +40,9 @@ Installing
 
     npm install incremental-bars
 
+`require('incremental-bars')` returns a regular Handlebars object that you can use as normal to (pre)compile templates.
+You specify a transpiler mode other than the standard `'html'` by passing a `transpilerOptions` hash to `compile` or `precompile` as described in the next sections.
+
 Usage
 -----
 
@@ -47,18 +50,18 @@ Compiling / precompiling templates using incremental-bars is syntactically ident
 Only 2 things are necessary:
 
 1. you must `require('incremental-bars')` instead of `require('handlebars')`
-2. you must add a `transpilerOptions` hash (described below) to the options passed to `Handlebars.compile` and `Handlebars.precompile`
+2. you must add a `transpilerOptions` hash (described below) to the options passed to `Handlebars.compile` and `Handlebars.precompile` if you want to use a special backend
 
-This is an example snippet for programmatic usage:
+This is an example snippet for programmatic usage with the `idom` backend:
 
 ```javascript
 var Handlebars = require('incremental-bars');
 var html = '<div>hello: {{ world}} [{{ @backend }}] {{ type }}</world>';
-var templateFn = Handlebars.compile(html, { transpilerOptions : { backend : 'idom' }});
+var templateFn = Handlebars.compile(html, { /* Handlebars options, */ transpilerOptions : { backend : 'idom' }});
 ...
 ```
 
-Of course `Handlebars.precompile` works the same way (see below for more info on that)
+Of course `Handlebars.precompile` works the same way (more info on that below)
 
 Check out the /examples folder for some inspiration.
 
@@ -103,7 +106,7 @@ Similarly to its `compile` equivalent, this is essentially the same as calling `
 ```javascript
 var Handlebars = require('incremental-bars');
 var html = '<div>hello: {{ world}} [{{ @backend }}] {{ type }}</world>';
-var templateData = Handlebars.precompile(html, { transpilerOptions : { backend : 'idom' }});
+var templateData = Handlebars.precompile(html, { /* Handlebars options, */ transpilerOptions : { backend : 'idom' }});
 ...
 ```
 

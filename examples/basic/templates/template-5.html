@@ -1,0 +1,22 @@
+<div class="content">
+    <div class="content__title">
+        <h3>template-5 (context + data + partial + #each + #if + customHelper)</h3>
+    </div>
+    <div class="content__body">
+        <div>hello: {{ world}}. My backend is {{ @backend }}</div>
+        {{> _template-partial }}
+        <div>
+            <ul>
+                {{#each items}}
+                    <li key="{{ @index }}" style="color:{{#if @index }}navy{{^}}red{{/if}}">
+                        {{ customHelper @index }} {{ this }} {{#if @first}}(first){{/if}} {{#if @last}}(last){{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div data-partial-id="my_partial_holder">
+        <strong>THIS MUST NOT BE GENERATED BECAUSE THE PARENT IS MARKED AS A SKIP BLOCK (skipBlockAttributeMarker='data-partial-id') AND emptySkipBlocks = true</strong>
+    </div>
+</div>
+<hr/>

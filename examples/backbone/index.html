@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"><!-- don't forget this one -->
+        <title>incremental-bars backbone example</title>
+    </head>
+    <body>
+        <div id="container"></div>
+    </body>
+    <!-- standard Handlebars and IncrementalDOM -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.runtime.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/incrementaldom/0.5.1/incremental-dom.js"></script>
+    <!-- backbone stuff -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
+    <!-- precompiled templates -->
+    <script type="text/javascript" src="scripts/templates.js"></script>
+    <script type="text/javascript">
+
+        var View = Backbone.View.extend({
+            events : {
+                'keyup input' : function(evt) {
+                    var input = evt.currentTarget;
+                    this.model.set(input.name, input.value);
+                }
+            },
+            initialize : function(options) {
+                this.template = options.template;
+                this.listenTo(this.model, 'change', this.render);
+            },
+            render : function() {
+                IncrementalDOM.patch(this.el, this.template, this.model.toJSON());
+                return this.el;
+            }
+        });
+
+        var model = new Backbone.Model;
+        var view  = new View({
+            template : Handlebars.templates['template'],
+            model : model
+        });
+
+        // Container object where we'll append all generated templates
+        var containerEl = document.getElementById('container');
+        containerEl.append(view.render());
+
+    </script>
+</html>

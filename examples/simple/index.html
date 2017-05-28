@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"><!-- don't forget this one -->
+        <title>incremental-bars example</title>
+    </head>
+    <body>
+        <div id="container"></div>
+    </body>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.runtime.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/incrementaldom/0.5.1/incremental-dom.js"></script>
+    <script type="text/javascript" src="scripts/templates.js"></script>
+    <script type="text/javascript">
+
+        // Container object where we'll append all generated templates
+        var containerEl = document.getElementById('container')
+
+        // Process each template in Handlebars.templates
+        var templates   = Handlebars.templates;
+        for(var templateName in templates) {
+            // Lookup template function
+            var templateFn = templates[templateName];
+            // Create an element...
+            var el = document.createElement('div');
+            // ... patch it ...
+            IncrementalDOM.patch(el, templateFn, { world : 'world!' });
+            // ... and append it!
+            containerEl.append(el);
+        }
+
+        // All done :)
+    </script>
+</html>

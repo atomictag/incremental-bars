@@ -23,10 +23,10 @@
         return templateFn;
     };
 
-{{#if statics}}
+{{#if statics.__name }}
     // Generated statics block
 
-    var {{ lookup statics "__name"}} = {
+    var {{ statics.__name }} = {
         {{#each statics}}
            {{ @key }} : {{{stringify this }}},
         {{/each}}
@@ -49,20 +49,15 @@
     Hbs.templates["{{ @key }}"] = Hbs.template({{{ this }}});
 
     {{/each}}
-
 {{else}}
     /* ------------------ [ NO TEMPLATES ] ------------------ */
 {{/if}}
 
 {{#if partials.length}}
-
     // ================== Auto-register partials ==================
-
     {{#each partials}}
-    /* ------------------ partial [ {{ @key }} ] ------------------ */
     Hbs.registerPartial("{{ this }}", Hbs.templates["{{ this }}"] );
-
     {{/each}}
 {{/if}}
 
-})(window.Handlebars, window.IncrementalDOM);
+})(window.Handlebars);

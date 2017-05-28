@@ -6,5 +6,8 @@
         <div>hello: {{ world}}. My backend is {{ @backend }}</div>
         {{> _template-partial }}
     </div>
+    <div data-partial-id="my_partial_holder">
+        <strong>THIS MUST NOT BE GENERATED BECAUSE THE PARENT IS MARKED AS A SKIP BLOCK (skipBlockAttributeMarker='data-partial-id') AND emptySkipBlocks = true</strong>
+    </div>
 </div>
 <hr/>

@@ -1,0 +1,18 @@
+<div>
+    <h3>Simple Backbone Integration</h3>
+    <div>
+        Input some text in the input field. When the input change the whole View is re-rendered.
+    </div>
+    <div>
+        <p>
+            <input name="userInput" type="text" value="{{ userInput }}"/>
+        </p>
+        <p>
+            {{#if userInput}}
+                You typed: <strong>{{ userInput }}</strong>
+            {{ else }}
+                Please type something!
+            {{/if}}
+        </p>
+    </div>
+</div>
