@@ -1,5 +1,6 @@
 var _ = require('underscore')._;
 var HtmlParser = require('htmlparser2').Parser;
+var HtmlMinify = require('html-minifier').minify;
 
 var Utils = require('../shared/utils');
 var Opcodes = require('../shared/opcodes');
@@ -8,6 +9,7 @@ var DatasetCollector = require('./dataset-collector');
 var AttributesCollector = require('./attributes-collector');
 
 var DEFAULT_OPTIONS   = {
+    minifyInput                : true,
     skipBlockAttributeMarker   : 'data-partial-id',     // The attribute marker for elements that need to generate a Opcodes.SKIP instruction
     emptySkipBlocks            : true,                  // Whether instructions within skip blocks should not be generated
     safeMergeSelfClosing       : true,                  // Whether it is safe to merge open / close on ALL tags
@@ -263,6 +265,16 @@ _.extend(TemplateTranspiler.prototype, {
             html = html.replace(Constants.COMMENT_BLOCK_MOUSTACHE_RE, '').replace(Constants.COMMENT_MOUSTACHE_RE, '');
             // More trimming before and after leading/trailing tags (for noel views)
             html = html.replace(/^\s*</gm,'<').replace(/>\s*$/gm,'>');
+            if(this.options.minifyInput) {
+                // Apply HtmlMinify to remove spaces and line breaks (so they don't end up as useless text nodes).
+                // Note that mustaches inside <pre> tags may have their spacing messed up because of this, but it's for a good cause :)
+                html = HtmlMinify(html, {
+                    collapseWhitespace : true,
+                    conservativeCollapse : false,
+                    preserveLineBreaks   : false,
+                    ignoreCustomFragments : [ /\{\{[\s\S]*?\}\}/ ]
+                });
+            }
             // Patch moustaches. This also normalizes them
             html = this.patchMoustaches(html);
             // Normalize moustaches enclosed used in tags, so they can be used as <{{ tag }}> ... <{{ /tag }}>

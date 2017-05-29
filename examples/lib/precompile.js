@@ -7,6 +7,7 @@ var DEFAULT_HANDLEBARS_OPTIONS = {};
 
 var DEFAULT_TRANSPILER_OPTIONS   = {
     debug : false,
+    minifyInput            : true,   // OPTIONAL (true): minify input removing whitespaces and carriage returns
     backend : 'idom',                // REQUIRED: Suppoorted backends: idom, html (to use default Handlebars)
     functionMap : {                  // OPTIONAL: What function names should be generated for the various opcodes for this backend (see shared/opcodes.js).
         'elementOpen'      : '_o',

@@ -82,6 +82,7 @@ Full example with description (this is the default for the ìdom backend):
 
 ```javascript
 var transpilerOptions   = {
+    minifyInput : true,   // OPTIONAL: minify input removing whitespaces and carriage returns (default is true)
     backend : 'idom',     // REQUIRED: Suppoorted backends: idom, html (to use default Handlebars)
     functionMap : {       // OPTIONAL: What function names should be generated for the various opcodes for this backend (see shared/opcodes.js). Defaults:
       'elementOpen'      : 'IncrementalDOM.elementOpen',
@@ -187,7 +188,7 @@ correctly generates:
 
 #### Direct DOM manipulation (AKA jQuery)
 
-One cool feature about this library, and one that comes literally for free thanks to incremental-dom, is the ability to use JQuery & co. in conjunction with the DOM patching, something that is a big no-no for other virtual-dom implementations. Perhaps the most notable difference with other DOM libraries is that whatever is modified (e.g. by jQuery) that is not visible to incremental-dom will be kept in the elements after each render - and not be reverted to the known state. Adding elements to the DOM, conversely, won't survive a re-render cycle (but that's desirable, I guess). Just be aware that DOM manipulations done by JQuery are not necessarily reset after the template is re-rendered because the elements are not thrashed until really needed (unlike traditional Handlebars which destroys the current DOM sub-tree and builds a new one from scratch upon each render). 
+One cool feature about this library, and one that comes literally for free thanks to incremental-dom, is the ability to use JQuery & co. in conjunction with the DOM patching, something that is a big no-no for other virtual-dom implementations. Perhaps the most notable difference with other DOM libraries is that whatever is modified (e.g. by jQuery) that is not visible to incremental-dom will be kept in the elements after each render - and not be reverted to the known state. Adding elements to the DOM, conversely, won't survive a re-render cycle (but that's desirable, I guess). Just be aware that DOM manipulations done by JQuery are not necessarily reset after the template is re-rendered because the elements are not thrashed until really needed (unlike traditional Handlebars which destroys the current DOM sub-tree and builds a new one from scratch upon each render).
 
 #### Nested DOM subtrees
 
