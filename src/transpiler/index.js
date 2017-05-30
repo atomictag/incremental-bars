@@ -9,7 +9,7 @@ var DatasetCollector = require('./dataset-collector');
 var AttributesCollector = require('./attributes-collector');
 
 var DEFAULT_OPTIONS   = {
-    minifyInput                : true,
+    minifyInput                : true,                  // Minify input removing whitespaces and carriage returns
     skipBlockAttributeMarker   : 'data-partial-id',     // The attribute marker for elements that need to generate a Opcodes.SKIP instruction
     emptySkipBlocks            : true,                  // Whether instructions within skip blocks should not be generated
     safeMergeSelfClosing       : true,                  // Whether it is safe to merge open / close on ALL tags
