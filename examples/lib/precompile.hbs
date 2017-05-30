@@ -1,4 +1,4 @@
-(function(Hbs, Idom) {
+(function(Hbs) {
 
     // Precompiled templates are collected in Handlebars.template
     Hbs.templates = Hbs.templates || {};

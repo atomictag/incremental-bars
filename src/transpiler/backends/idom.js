@@ -196,8 +196,6 @@ _.extend(IDomEmitter.prototype, {
     },
     // <control> ( <istr> + <istr> + <istr> )</control>
     emit : function(descriptors) {
-        // console.log(JSON.stringify(_.pluck(descriptors, 'datasets'), 0, 4))
-
         var GROUP_SEPARATOR    = ' , ';
         var GROUP_CLOSING      = ')'; // ', "")';
         var emitted = '',
