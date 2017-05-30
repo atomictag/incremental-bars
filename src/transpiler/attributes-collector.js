@@ -1,5 +1,5 @@
 var _ = require('underscore')._;
-var Constants = require('../shared/constants');
+var Constants = require('./shared/constants');
 
 var BLOCK_QUALIFIER = 'block';
 var ATTRIBUTE_QUALIFIER = 'attribute';

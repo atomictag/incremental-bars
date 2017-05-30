@@ -23,13 +23,13 @@ module.exports = function(Handlebars) {
     JavaScriptCompilerInstrumented.prototype.compiler    = JavaScriptCompilerInstrumented;
 
     // OVERRIDE: compile
-    JavaScriptCompilerInstrumented.prototype.compile = function compile_instrumented_idom(environment, options, context, asObject) {
+    JavaScriptCompilerInstrumented.prototype.compile = function compile_instrumented(environment, options, context, asObject) {
         options = options || {};
         if(options.backend == null) options.backend = DEFAULT_BACKEND;
         return JavaScriptCompilerDefault.prototype.compile.call(this, environment, options, context, asObject);
     };
     // OVERRIDE: pushSource
-    JavaScriptCompilerInstrumented.prototype.pushSource = function pushSource_instrumented_idom(source) {
+    JavaScriptCompilerInstrumented.prototype.pushSource = function pushSource_instrumented(source) {
         if(this.options.backend != null && this.options.backend !== DEFAULT_BACKEND) {
             if (this.pendingContent) {
                 // Push source without quoting

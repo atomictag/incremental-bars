@@ -1,7 +1,7 @@
 var _     = require('underscore')._;
 
-var Utils = require('../../shared/utils');
-var Opcodes = require('../../shared/opcodes');
+var Utils = require('../shared/utils');
+var Opcodes = require('../shared/opcodes');
 
 // Mapping opcodes -> emitted functions. Overridable with options.functionMap
 var DEFAULT_FUNCTION_MAP = {};

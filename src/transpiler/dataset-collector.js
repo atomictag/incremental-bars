@@ -1,7 +1,7 @@
 var _ = require('underscore')._;
 
-var Utils = require('../shared/utils');
-var Opcodes = require('../shared/opcodes');
+var Utils = require('./shared/utils');
+var Opcodes = require('./shared/opcodes');
 
 // ============================================
 // allow datasets around text blocks instead of collecting them in the parent?

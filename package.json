@@ -1,7 +1,7 @@
 {
   "name": "incremental-bars",
   "description": "incremental-dom backend support for handlebars templates",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": [
     "handlebars",
     "mustache",

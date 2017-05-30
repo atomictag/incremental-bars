@@ -2,9 +2,9 @@ var _ = require('underscore')._;
 var HtmlParser = require('htmlparser2').Parser;
 var HtmlMinify = require('html-minifier').minify;
 
-var Utils = require('../shared/utils');
-var Opcodes = require('../shared/opcodes');
-var Constants = require('../shared/constants');
+var Utils = require('./shared/utils');
+var Opcodes = require('./shared/opcodes');
+var Constants = require('./shared/constants');
 var DatasetCollector = require('./dataset-collector');
 var AttributesCollector = require('./attributes-collector');
 
