@@ -31,9 +31,9 @@ This package is essentially composed of 3 main parts:
 [incremental-dom](https://github.com/google/incremental-dom) was chosen because it's a beautiful, fast and dead-simple library which has already a notion of "sequence of instructions" which map really well with the above approach (to the extent that the "intermediate representation" is just a little bit more than a list of idom-like meta-instructions).
 
 > The main purpose of this library is to be used as a build-time tool to generate optimized precompiled templates.
-> Although it is perfectly possible to package it to run in a browser, and therefore use it as a runtime compiler,
-> expect some inevitable size and performance overhead due to the additional internalization steps required to parse
-> and process the HTML input.
+> Although it would be possible to package it to run in a browser (but some modifications are needed), and therefore
+> use it as a runtime compiler, you should expect some inevitable size and performance overhead due to the additional
+> internalization steps required to parse and process the HTML input. So that's not recommended.
 
 Installing
 ----------
