@@ -270,7 +270,7 @@ _.extend(TemplateTranspiler.prototype, {
                 // Note that mustaches inside <pre> tags may have their spacing messed up because of this, but it's for a good cause :)
                 html = HtmlMinify(html, {
                     collapseWhitespace : true,
-                    conservativeCollapse : false,
+                    conservativeCollapse : true,
                     preserveLineBreaks   : false,
                     ignoreCustomFragments : [ /\{\{[\s\S]*?\}\}/ ]
                 });
