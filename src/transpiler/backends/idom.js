@@ -196,7 +196,7 @@ _.extend(IDomEmitter.prototype, {
     },
     // <control> ( <istr> + <istr> + <istr> )</control>
     emit : function(descriptors) {
-        var GROUP_SEPARATOR    = ' , ';
+        var GROUP_SEPARATOR    = ' + '; // ' , ' is also possible but it pushes too much stuff on the stack
         var GROUP_CLOSING      = ')'; // ', "")';
         var emitted = '',
             prevIsControl = false,
