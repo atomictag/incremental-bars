@@ -66,7 +66,7 @@ var templateFn = Handlebars.compile(html, { /* Handlebars options, */ transpiler
 IncrementalDOM.patch(someElement, templateFn, someData);
 ```
 
-Of course `Handlebars.precompile` works the same way (more info on that below)
+Of course `Handlebars.precompile` works the same way (more info on that below). Here's a [RunKit]( https://runkit.com/593aa1f1727bdc0012e02621/593aa1f1727bdc0012e02622) to try it out yourself.
 
 Check out the [examples](https://github.com/atomictag/incremental-bars/tree/master/examples) for some inspiration.
 
