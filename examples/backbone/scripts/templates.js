@@ -48,19 +48,19 @@
     Hbs.templates["template"] = Hbs.template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return (_t(" You typed: ") , _o("strong", "idom-13", null) , _t(""
+  return (_t(" You typed: ") & _o("strong", "idom-13", null) & _t(""
     + container.escapeExpression(((helper = (helper = helpers.userInput || (depth0 != null ? depth0.userInput : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"userInput","hash":{},"data":data}) : helper)))
-    + "") , _c("strong"));
+    + "") & _c("strong"));
 },"3":function(container,depth0,helpers,partials,data) {
     return (_t(" Please type something! "));
 },"compiler":[7,">= 4.0.0","idom"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-  return (_o("div", "idom-6", null) , _o("h3", "idom-7", null) , _t("Simple Backbone Integration") , _c("h3") , _o("div", "idom-8", null) , _t("Input some text in the input field. When the input change the whole View is re-rendered.") , _c("div") , _o("div", "idom-9", null) , _o("p", "idom-10", null) , _v("input", "idom-11", __$._1554569446, "value", ""
+  return (_o("div", "idom-6", null) & _t(__$._S) & _o("h3", "idom-7", null) & _t("Simple Backbone Integration") & _c("h3") & _t(__$._S) & _o("div", "idom-8", null) & _t(" Input some text in the input field. When the input change the whole View is re-rendered. ") & _c("div") & _t(__$._S) & _o("div", "idom-9", null) & _t(__$._S) & _o("p", "idom-10", null) & _t(__$._S) & _v("input", "idom-11", __$._1554569446, "value", ""
     + container.escapeExpression(((helper = (helper = helpers.userInput || (depth0 != null ? depth0.userInput : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"userInput","hash":{},"data":data}) : helper)))
-    + "") , _c("p") , _o("p", "idom-12", null))
+    + "") & _t(__$._S) & _c("p") & _t(__$._S) & _o("p", "idom-12", null))
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.userInput : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
-    + (_t(__$._S) , _c("p") , _c("div") , _c("div"));
+    + (_t(__$._S) & _c("p") & _t(__$._S) & _c("div") & _t(__$._S) & _c("div"));
 },"useData":true});
 
 

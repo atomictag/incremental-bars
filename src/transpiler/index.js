@@ -218,6 +218,7 @@ _.extend(TemplateTranspiler.prototype, {
                 i++;
             }
         }
+        return descriptors;
     },
     // Merge self closing tags where possible
     mergeSelfClosing : function(descriptors) {
@@ -251,6 +252,7 @@ _.extend(TemplateTranspiler.prototype, {
             }
             i++;
         }
+        return descriptors;
     },
     mergeDescriptors : function(descriptors) {
         this.mergeSkipLevels(descriptors);
