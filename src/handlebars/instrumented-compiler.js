@@ -43,6 +43,15 @@ module.exports = function(Handlebars) {
             JavaScriptCompilerDefault.prototype.pushSource.call(this, source);
         }
     };
+    // OVERRIDE: appendEscaped. This is technically not required since you can pass the option `noEscape` to Handlebars itself.
+    // However this may be be obvious (see Issue #4 https://github.com/atomictag/incremental-bars/issues/4)
+    JavaScriptCompilerInstrumented.prototype.appendEscaped = function appendEscaped_instrumented() {
+        if(this.options.backend != null && this.options.backend !== DEFAULT_BACKEND) {
+            this.pushSource(this.appendToBuffer([ this.popStack() ]));
+        } else {
+            JavaScriptCompilerDefault.prototype.appendEscaped.call(this);
+        }
+    };
     // OVERRIDE: compilerInfo
     JavaScriptCompilerInstrumented.prototype.compilerInfo = function compilerInfo() {
         var revision = Handlebars.COMPILER_REVISION,
