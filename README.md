@@ -20,7 +20,7 @@ There are ways to make Handlebars build DOM rather than strings ([HtmlBars](http
 - allows reuse of templates that have already been written and deployed
 - does not attempt to rewrite the whole Handlebars
 
-The idea is not to make Handlebars understand DOM - which is a complex task and ends up re-writing most of the Handlebars library or making it hard to maintain / upgrade - but rather to let Handlebars do what it does best and simply change the input fed into it and adjust a little its output. The fact Handlebars is entirely html-agnostic (it does not make any assumption of how the input looks like so it has not clue about tags, attributes etc.) is just perfect to achieve this.
+The idea is not to make Handlebars understand DOM - which is a complex task and ends up re-writing most of the Handlebars library or making it hard to maintain / upgrade - but rather to let Handlebars do what it does best and simply change the input fed into it and adjust a little its output. The fact Handlebars is entirely html-agnostic (it does not make any assumption of how the input looks like so it has no clue about tags, attributes etc.) is just perfect to achieve this.
 
 This package is essentially composed of 3 main parts:
 
