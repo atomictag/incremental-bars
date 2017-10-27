@@ -11,14 +11,14 @@ var AttributesCollector = function(parseOptions) {
     this.staticAttrs              = [];
     this.dynAttrs                 = [];
     this.hasSkipBlockAttribute    = false;
-    this.skipBlockAttributeMarker = parseOptions.skipBlockAttributeMarker;
+    this.skipBlockAttributeMarker = Array.isArray(parseOptions.skipBlockAttributeMarker) ? parseOptions.skipBlockAttributeMarker : [parseOptions.skipBlockAttributeMarker];
 };
 AttributesCollector.prototype.pushPair  = function(key, value) {
     var hasMoustache = key.indexOf(Constants.moustachePlaceholderPrefix) !== -1 || value.indexOf(Constants.moustachePlaceholderPrefix) !== -1;
     var isStatic     = (!hasMoustache && this.bcount === 0);
     var qualifier    = ATTRIBUTE_QUALIFIER;
     // skip block attribute can be static or dynamic
-    if(key === this.skipBlockAttributeMarker) {
+    if(this.skipBlockAttributeMarker.indexOf(key) !== -1) {
         this.hasSkipBlockAttribute = true;
         if(this.bcount > 0) {
             throw new Error('Unsupperted skip block ' + key + (value ? '=' + value : '' ) + ' inside a control block');
