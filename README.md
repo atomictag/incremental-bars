@@ -97,7 +97,7 @@ var transpilerOptions   = {
     hoistedStatics           : {},                // OPTIONAL (undefined). An object that will hold hoisted static string references (falsy value to disable)
     generateKeysForStaticEl  : false,             // OPTIONAL (false). Whether keys should be auto-generated for elements with only static properties (not recommended)
     generateKeysForAllEl     : true,              // OPTIONAL (true). Whether keys should be auto-generated for ALL elements (recommended, takes precedence over generateKeysForStaticEl)
-    skipBlockAttributeMarker : 'data-partial-id', // OPTIONAL (data-partial-id). The attribute marker for elements that need to generate a 'skip' instruction (falsy to disable)
+    skipBlockAttributeMarker : 'data-partial-id', // OPTIONAL (data-partial-id). The attribute marker for elements that need to generate a 'skip' instruction. Can be a string or an array of strings. (falsy to disable)
     emptySkipBlocks          : true,              // OPTIONAL (true). Whether instructions within skip blocks should be ignored / not be generated
     safeMergeSelfClosing     : true,              // OPTIONAL (true). Whether it is safe to merge open / close on ALL tags (true because this is safe with idom backends)
 }
