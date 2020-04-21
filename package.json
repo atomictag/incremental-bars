@@ -33,7 +33,7 @@
     "examples"
   ],
   "dependencies": {
-    "handlebars"   : "~4.0.10",
+    "handlebars": ">=4.3.0",
     "html-minifier": "^3.5.2",
     "htmlparser2"  : "^3.9.2",
     "underscore"   : "^1.8.3"
